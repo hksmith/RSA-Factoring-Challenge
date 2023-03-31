@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+# is a factors challenge
+import sys
+
+def factorize(num):
+    factors = []
+    for i in range(2, num):
+        if num % i == 0:
+            factors.append((i, num // i))
+    return factors
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+    with open(input_file) as f:
+        for line in f:
+            num = int(line.strip())
+            factor_pairs = factorize(num)
+            for factor_pair in factor_pairs:
+                print(f"{num}={factor_pair[0]}*{factor_pair[1]}")
